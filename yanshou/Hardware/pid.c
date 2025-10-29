@@ -1,0 +1,51 @@
+#include "stm32f10x.h" 
+#include "pid.h"// Device header
+piddef positionpid;
+piddef speedpid;
+void pid_init(void)
+{
+speedpid.jifen=0;
+speedpid.jifenxianzhi=1000;
+	speedpid.kp=5.0f;
+	speedpid.ki=0.05f;
+	speedpid.kd=0.1f;
+	speedpid.lasterror=0;
+	speedpid.outxianzhi=999;
+	positionpid.jifen=0;
+positionpid.jifenxianzhi=1000;
+	positionpid.kp=2.0f;
+positionpid.ki=0.01f;
+positionpid.kd=0.1f;
+	positionpid.lasterror=0;
+positionpid.outxianzhi=999;
+}
+
+int16_t pidcalculate(piddef*pid,float target,float actual)
+{
+float error=target-actual;
+	float out;
+	pid->jifen+=error;
+	if(pid->jifen>pid->jifenxianzhi)
+	{pid->jifen=pid->jifenxianzhi;}
+	if(pid->jifen<-pid->jifenxianzhi)
+	{pid->jifen=pid->jifenxianzhi;}
+	float dao=error-pid->lasterror;
+	out=pid->kp*error+pid->ki*pid->jifen+pid->kd*dao;
+	if(out>pid->outxianzhi)
+	{out=pid->outxianzhi;}
+	if(out<-pid->outxianzhi)
+	{out=pid->outxianzhi;}
+	pid->lasterror=error;
+	return out;
+}
+int16_t pidspeedcal(float targetspeed,float actualspeed)
+{
+return pidcalculate(&speedpid,targetspeed,actualspeed);
+}
+int16_t pidposcal(float targetpos,float actualpos)
+{
+return pidcalculate(&speedpid,targetpos,actualpos);
+}
+
+
+	
