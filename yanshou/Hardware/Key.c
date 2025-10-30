@@ -27,8 +27,7 @@ void Key_Init(void)
   */
 uint8_t Key_GetNum(void)
 {
-	//定义变量，默认键码值为0
-	
+
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == 0)			//读PB1输入寄存器的状态，如果为0，则代表按键1按下
 	{
 		Delay_ms(20);											//延时消抖
@@ -40,6 +39,7 @@ uint8_t Key_GetNum(void)
 			currentmode=0;
 													//置键码为1
 	}
+	return 0;
 	
 	
 		

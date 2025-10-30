@@ -8,14 +8,14 @@ speedpid.jifen=0;
 speedpid.jifenxianzhi=1000;
 	speedpid.kp=5.0f;
 	speedpid.ki=0.05f;
-	speedpid.kd=0.1f;
+	speedpid.kd=0.0f;
 	speedpid.lasterror=0;
 	speedpid.outxianzhi=999;
 	positionpid.jifen=0;
 positionpid.jifenxianzhi=1000;
 	positionpid.kp=2.0f;
 positionpid.ki=0.01f;
-positionpid.kd=0.1f;
+positionpid.kd=0.0f;
 	positionpid.lasterror=0;
 positionpid.outxianzhi=999;
 }
@@ -48,4 +48,5 @@ return pidcalculate(&speedpid,targetpos,actualpos);
 }
 
 
-	
+
+
