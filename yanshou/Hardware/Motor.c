@@ -48,7 +48,7 @@ void Motor_Setpwm(uint16_t motornum, int8_t pwm)
 		GPIO_ResetBits(GPIOB,GPIO_Pin_15);
 			PWM_SetCompare(1,pwm);
 		}
-		if(pwm>=0)
+		else
 		{
 		GPIO_SetBits(GPIOB,GPIO_Pin_15);
 		GPIO_ResetBits(GPIOB,GPIO_Pin_14);

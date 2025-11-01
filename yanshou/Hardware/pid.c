@@ -6,8 +6,8 @@ void pid_init(void)
 {
 speedpid.jifen=0;
 speedpid.jifenxianzhi=1000;
-	speedpid.kp=5.0f;
-	speedpid.ki=0.05f;
+	speedpid.kp=50.0f;
+	speedpid.ki=0.0f;
 	speedpid.kd=0.0f;
 	speedpid.lasterror=0;
 	speedpid.outxianzhi=999;
@@ -44,7 +44,7 @@ return pidcalculate(&speedpid,targetspeed,actualspeed);
 }
 int16_t pidposcal(float targetpos,float actualpos)
 {
-return pidcalculate(&speedpid,targetpos,actualpos);
+return pidcalculate(&positionpid,targetpos,actualpos);
 }
 
 
