@@ -23,7 +23,7 @@ void Motor_Init(void)
 /**
 
   */
-void Motor_Setpwm(uint16_t motornum, int8_t pwm)
+void Motor_Setpwm(uint16_t motornum, int16_t pwm)
 {
 	if(motornum==0)
 	{
